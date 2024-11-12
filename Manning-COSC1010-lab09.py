@@ -1,12 +1,9 @@
-# Your Name Here
+# Madison Manning
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section:
+# 11/12/2024
+# Lab 09
+# Lab Section: 10
 # Sources, people worked with, help given to:
-# Your
-# Comments
-# Here
 
 # Classes
 # For this assignment, you will be creating two classes:
@@ -34,6 +31,29 @@
 # - Assign the parameter for size to a size attribute.
 # - Assign the parameter for sauce to the attribute.
 # - Create the toppings attribute, starting off as a list only holding cheese.
+
+class Pizza:
+    def __init__(self, size, sauce, toppings):
+        self.size = size
+        self.sauce = "red" 
+        self.toppings = [cheese]
+    def check_size(self):
+        if int(self.size) < 10:
+            self.size = 10
+        else:
+            self.size = int(self.size)
+    def add_toppings(self):
+        while True:
+            topping = input("Add extra topping here: /n enter done to stop")
+            if topping.lower() == "done":
+                break
+            else:
+                self.toppings.append(topping)
+    def check_sauce(self):
+        if self.sauce != sauce:
+            self.sauce = sauce
+        else:
+            pass
 
 
 # You will be creating a Pizzeria class with the following attributes:
@@ -69,6 +89,11 @@
 #   - The total price.
 # - getNumberOfOrders()
 #   - This will simply return the number of orders.
+
+class Pizzeria:
+    orders = 0
+    price_per_topping = 0.30 * (len(Pizza(self.toppings)) - 1)
+    price_per_inch = 0.60 * Pizza.check_size()
 
 
 # - Declare your pizzeria object.
