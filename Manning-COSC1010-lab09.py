@@ -33,27 +33,26 @@
 # - Create the toppings attribute, starting off as a list only holding cheese.
 
 class Pizza:
-    def __init__(self, size, sauce, toppings):
-        self.size = size
-        self.sauce = "red" 
-        self.toppings = [cheese]
-    def check_size(self):
-        if int(self.size) < 10:
+    def __init__(self, size, sauce = "red"):
+        self.checkSize(size)
+        self.sauce = sauce
+        self.toppings = ["cheese"]
+    def checkSize(self, size):
+        if not size.isdigit() == True or int(size) < 10:
             self.size = 10
         else:
-            self.size = int(self.size)
-    def add_toppings(self):
-        while True:
-            topping = input("Add extra topping here: /n enter done to stop")
-            if topping.lower() == "done":
-                break
-            else:
-                self.toppings.append(topping)
-    def check_sauce(self):
-        if self.sauce != sauce:
-            self.sauce = sauce
-        else:
-            pass
+            self.size = int(size)
+    def getSize(self):
+        return self.size
+    def addToppings(self, newToppings):
+        for t in newToppings:
+            self.toppings.append(t)
+    def numToppings(self):
+        return len(self.toppings)
+    def getToppings(self):
+        return self.toppings
+    def getSauce(self):
+        return self.sauce
 
 
 # You will be creating a Pizzeria class with the following attributes:
@@ -92,8 +91,16 @@ class Pizza:
 
 class Pizzeria:
     orders = 0
-    price_per_topping = 0.30 * (len(Pizza(self.toppings)) - 1)
-    price_per_inch = 0.60 * Pizza.check_size()
+    def __init__(self, pizzas, orders = 0, price_per_topping = 0.30, price_per_inch = 0.60):
+        self.price_per_topping = price_per_topping
+        self.price_per_inch = price_per_inch
+        self.num_pizzas = pizzas
+        self.orders = orders
+    def placeOrder(self):
+
+
+
+
 
 
 # - Declare your pizzeria object.
@@ -103,6 +110,23 @@ class Pizzeria:
 # - After the order is placed, call the getReceipt() method.
 # - Repeat the loop as needed.
 # - AFTER the loop, print how many orders were placed.
+
+while True:
+    pizza_wanted = input("Would you like to place an order? Yes / No")
+    if pizza_wanted.lower() == "no":
+        break
+    size = input("What size pizza would you like?")
+    sauce = input("What type of sauce would you like? Leave blank for red")
+    newToppings = []
+    pizzas = []
+    while True:
+        t = input("What toppings would you like? /n enter done to end")
+        if t.lower() = "done":
+            break
+        else:
+            newToppings.append(t)
+
+        
 
 
 # Example output:
