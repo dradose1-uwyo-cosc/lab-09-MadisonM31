@@ -91,12 +91,37 @@ class Pizza:
 
 class Pizzeria:
     orders = 0
-    def __init__(self, pizzas, orders = 0, price_per_topping = 0.30, price_per_inch = 0.60):
-        self.price_per_topping = price_per_topping
-        self.price_per_inch = price_per_inch
-        self.num_pizzas = pizzas
-        self.orders = orders
+    pizzas = []
+    def __init__(self):
+        self.price_per_topping = 0.30
+        self.price_per_inch = 0.60
     def placeOrder(self):
+        self.orders += 1
+        size = input("What size pizza would you like?  ")
+        sauce = input("What type of sauce would you like? Leave blank for red  ")
+        newToppings = []
+        while True:
+            t = input("What toppings would you like? enter done to end  ")
+            if t.lower() == "done":
+                break
+            else:
+                newToppings.append(t)
+        pizza = Pizza(size, sauce)
+        self.pizzas.append(pizza)
+    def getPrice(self):
+        return (pizza.getSize() * price_per_inch) + (pizza.numToppings() * price_per_topping)
+    def getReceipt(self, price_per_topping, price_per_inch): 
+        for pizza in pizzas:
+            print(f"You ordered a {pizza.checkSize()} inch pizza with {pizza.getSauce()} sauce and the following toppings:")
+            for t in toppings:
+                print(f"{t}")
+            print(f"You ordered {pizza.checkSize()} inches for ${pizza.checkSize() * price_per_inch}")
+            print(f"You ordered {pizza.numToppings()} toppings for ${pizza.numToppings() * price_per_topping}")
+            print(f"Your total price is ${pizza.getPrice()}")
+    def getNumOfOrders(self, orders):
+        return orders
+        
+
 
 
 
@@ -111,21 +136,26 @@ class Pizzeria:
 # - Repeat the loop as needed.
 # - AFTER the loop, print how many orders were placed.
 
+Order = Pizzeria()
+
 while True:
-    pizza_wanted = input("Would you like to place an order? Yes / No")
+    pizza_wanted = input("Would you like to place an order? Yes / No  ")
     if pizza_wanted.lower() == "no":
         break
-    size = input("What size pizza would you like?")
-    sauce = input("What type of sauce would you like? Leave blank for red")
-    newToppings = []
-    pizzas = []
-    while True:
-        t = input("What toppings would you like? /n enter done to end")
-        if t.lower() = "done":
-            break
+    else: 
+        while True:
+            prompt = input("Do you want a pizza? Yes or No  ")
+            if prompt.lower() == "no":
+                break
+            else: 
+                Order.placeOrder()
+        if Order.getNumOfOrders == 0:
+            print(f"You ordered no pizzas")
+            pass
         else:
-            newToppings.append(t)
+            Order.getReceipt()
 
+print(Orders.getNumOfOrders())
         
 
 
