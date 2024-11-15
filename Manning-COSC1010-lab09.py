@@ -33,24 +33,38 @@
 # - Create the toppings attribute, starting off as a list only holding cheese.
 
 class Pizza:
+
+
     def __init__(self, size, sauce = "red"):
         self.checkSize(size)
         self.sauce = sauce
         self.toppings = ["cheese"]
+
+
     def checkSize(self, size):
         if not size.isdigit() == True or int(size) < 10:
             self.size = 10
         else:
             self.size = int(size)
+
+
     def getSize(self):
         return self.size
+
+
     def addToppings(self, newToppings):
         for t in newToppings:
             self.toppings.append(t)
+
+
     def numToppings(self):
         return len(self.toppings)
+
+
     def getToppings(self):
         return self.toppings
+
+
     def getSauce(self):
         return self.sauce
 
@@ -90,11 +104,14 @@ class Pizza:
 #   - This will simply return the number of orders.
 
 class Pizzeria:
-    orders = 0
-    pizzas = []
+    
     def __init__(self):
         self.price_per_topping = 0.30
         self.price_per_inch = 0.60
+        self.orders = 0
+        self.pizzas = []
+
+
     def placeOrder(self):
         self.orders += 1
         size = input("What size pizza would you like?  ")
@@ -106,20 +123,32 @@ class Pizzeria:
                 break
             else:
                 newToppings.append(t)
-        pizza = Pizza(size, sauce)
-        self.pizzas.append(pizza)
+        if sauce == "":
+            pizza = Pizza(size)
+            pizza.addToppings(newToppings)
+            self.pizzas.append(pizza)
+        else:
+            pizza = Pizza(size, sauce)
+            pizza.addToppings(newToppings)
+            self.pizzas.append(pizza)
+
     def getPrice(self):
-        return (pizza.getSize() * price_per_inch) + (pizza.numToppings() * price_per_topping)
-    def getReceipt(self, price_per_topping, price_per_inch): 
-        for pizza in pizzas:
-            print(f"You ordered a {pizza.checkSize()} inch pizza with {pizza.getSauce()} sauce and the following toppings:")
-            for t in toppings:
-                print(f"{t}")
-            print(f"You ordered {pizza.checkSize()} inches for ${pizza.checkSize() * price_per_inch}")
-            print(f"You ordered {pizza.numToppings()} toppings for ${pizza.numToppings() * price_per_topping}")
-            print(f"Your total price is ${pizza.getPrice()}")
-    def getNumOfOrders(self, orders):
-        return orders
+        pizza = self.pizzas[-1]
+        return (pizza.getSize() * self.price_per_inch) + (pizza.numToppings() * self.price_per_topping)
+
+
+    def getReceipt(self, price_per_topping = 0.30, price_per_inch = 0.60): 
+        pizza = self.pizzas[-1]
+        print(f"You ordered a {pizza.getSize()} inch pizza with {pizza.getSauce()} sauce and the following toppings:")
+        for t in pizza.getToppings():
+            print(f"{t}")
+        print(f"\nYou ordered {pizza.getSize()} inches for ${pizza.getSize() * self.price_per_inch}")
+        print(f"You ordered {pizza.numToppings()} toppings for ${pizza.numToppings() * self.price_per_topping}")
+        print(f"Your total price is ${self.getPrice()}")
+
+
+    def getNumOfOrders(self):
+        return self.orders
         
 
 
@@ -142,20 +171,19 @@ while True:
     pizza_wanted = input("Would you like to place an order? Yes / No  ")
     if pizza_wanted.lower() == "no":
         break
-    else: 
-        while True:
-            prompt = input("Do you want a pizza? Yes or No  ")
-            if prompt.lower() == "no":
-                break
-            else: 
-                Order.placeOrder()
-        if Order.getNumOfOrders == 0:
-            print(f"You ordered no pizzas")
-            pass
-        else:
-            Order.getReceipt()
 
-print(Orders.getNumOfOrders())
+    while True:
+        prompt = input("Do you want a pizza? Yes or No  ")
+        if prompt.lower() == "no":
+            break
+        else: 
+            Order.placeOrder()
+    if Order.getNumOfOrders() == 0:
+        print(f"You ordered no pizzas")
+    else:
+        Order.getReceipt()
+
+print(Order.getNumOfOrders())
         
 
 
