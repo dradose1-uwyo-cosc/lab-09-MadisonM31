@@ -3,7 +3,7 @@
 # 11/12/2024
 # Lab 09
 # Lab Section: 10
-# Sources, people worked with, help given to:
+# Sources, people worked with, help given to: Special thanks to Paige and Austin
 
 # Classes
 # For this assignment, you will be creating two classes:
